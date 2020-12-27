@@ -1,0 +1,5 @@
+name: ${project.name}
+main: org.akadia.ath.Main
+version: ${project.version}
+author: akadia
+description: ${project.description}
