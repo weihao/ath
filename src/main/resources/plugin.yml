@@ -1,5 +1,13 @@
 name: ${project.name}
-main: org.akadia.ath.Main
+prefix: ${project.name}
+api-version: 1.13
+main: org.akadia.ath.spigot.Main
 version: ${project.version}
+git-version: ${git.commit.id.abbrev}
+load: POSTWORLD
 author: akadia
+authors: [akadia]
+website: https://akadia.org/
 description: ${project.description}
+depend: []
+softdepend: []

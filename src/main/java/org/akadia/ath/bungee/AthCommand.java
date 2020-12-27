@@ -1,12 +1,12 @@
-package org.akadia.ath;
+package org.akadia.ath.bungee;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.plugin.Command;
 
-public class ATH extends Command {
-    public ATH() {
+public class AthCommand extends Command {
+    public AthCommand() {
         super("ath");
     }
 

@@ -1,6 +1,7 @@
-package org.akadia.ath;
+package org.akadia.ath.bungee;
 
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -40,7 +41,7 @@ public class Main extends Plugin implements Listener {
         main = this;
         PluginManager pm = getProxy().getPluginManager();
         pm.registerListener(this, this);
-        pm.registerCommand(this, new ATH());
+        pm.registerCommand(this, new AthCommand());
 
         createFile("config.yml", true);
 
@@ -61,9 +62,10 @@ public class Main extends Plugin implements Listener {
         }
 
         maxCount = onlineCount;
-        logToFile(
-                String.format("(%s) - ATH Concurrent Online Player Record: %s", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()), maxCount)
-        );
+
+        String ath = String.format("(%s) - ATH Concurrent Online Player Record: %s", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()), maxCount);
+        logToFile(ath);
+        getLogger().info(ath);
 
         configuration.set("record", maxCount);
         try {
@@ -72,14 +74,14 @@ public class Main extends Plugin implements Listener {
             e.printStackTrace();
         }
 
+        BaseComponent[] pAth = new ComponentBuilder("Server Reached ATH Player Record: ")
+                .color(ChatColor.GOLD)
+                .bold(true)
+                .append(String.valueOf(maxCount))
+                .color(ChatColor.RED)
+                .create();
         for (ProxiedPlayer player : getProxy().getPlayers()) {
-            player.sendMessage(
-                    new ComponentBuilder("Server Reached ATH Player Record: ")
-                            .color(ChatColor.GOLD)
-                            .bold(true)
-                            .append(String.valueOf(maxCount))
-                            .color(ChatColor.RED)
-                            .create());
+            player.sendMessage(pAth);
         }
     }
 
