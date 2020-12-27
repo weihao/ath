@@ -11,3 +11,7 @@ website: https://akadia.org/
 description: ${project.description}
 depend: []
 softdepend: []
+
+commands:
+  ath:
+    description: get the ATH record

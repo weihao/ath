@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.akadia</groupId>
-    <artifactId>ath-record</artifactId>
-    <name>ATH</name>
-    <version>0.0.2</version>
+    <artifactId>ath</artifactId>
+    <name>Ath</name>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
     <url>https://akadia.org</url>
 

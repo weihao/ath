@@ -37,7 +37,7 @@ public class Main extends JavaPlugin implements Listener {
         configManager = new ConfigManager();
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(this, this);
-
+        getCommand("ath").setExecutor(new AthCommand());
 
     }
 
