@@ -10,7 +10,7 @@ authors: [ akadia ]
 website: https://akadia.org/
 description: ${project.description}
 depend: [ ]
-softdepend: [ ]
+softdepend: [ PlaceholderAPI ]
 
 commands:
   ath:

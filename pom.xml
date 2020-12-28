@@ -7,7 +7,7 @@
     <groupId>org.akadia</groupId>
     <artifactId>ath</artifactId>
     <name>Ath</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <url>https://akadia.org</url>
 
@@ -34,6 +34,10 @@
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
 
@@ -75,6 +79,12 @@
             <artifactId>bstats-bungeecord</artifactId>
             <version>1.8</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.10.9</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
