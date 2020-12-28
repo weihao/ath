@@ -9,9 +9,10 @@ public class AthCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage(
-                ChatColor.GOLD + "Server Reached ATH Player Record: "
-                        + ChatColor.RED + ChatColor.BOLD + Main.getMain().getMaxCount());
+        String pAth = ChatColor.translateAlternateColorCodes('&', Main.getMain().configManager.notify)
+                .replaceAll("%player_count%", String.valueOf(Main.getMain().getMaxCount()));
+
+        sender.sendMessage(pAth);
 
         return true;
     }
