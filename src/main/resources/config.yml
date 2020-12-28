@@ -1,2 +1,7 @@
 version: 2
 record: 0
+
+msg:
+  notify: "&6Server reached ATH player record: &l&c%player_count%"
+  serverLogging: "Concurrent Online Player Record: %player_count%"
+  diskLogging: "(%date%) - ATH Concurrent Online Player Record: %player_count%"

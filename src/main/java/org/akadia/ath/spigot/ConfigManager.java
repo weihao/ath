@@ -15,23 +15,29 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 public class ConfigManager {
+    final String CONFIG_FILENAME = "config.yml";
+
+    
     public FileConfiguration config;
     public File configFile;
 
     public File logFile;
 
+    String diskLogging;
+    String serverLogging;
+    String notify;
+
     public ConfigManager() {
-        // Makes the folder.
         if (!Main.getMain().getDataFolder().exists()) {
             Main.getMain().getDataFolder().mkdir();
         }
 
         // Config file.
-        configFile = new File(Main.getMain().getDataFolder(), "config.yml");
+        configFile = new File(Main.getMain().getDataFolder(), CONFIG_FILENAME);
         // Copy default.
         backupConfig();
         if (!configFile.exists()) {
-            Main.getMain().saveResource("config.yml", true);
+            Main.getMain().saveResource(CONFIG_FILENAME, true);
             config = YamlConfiguration.loadConfiguration(configFile);
         } else {
             // Generating missing configuration.
@@ -55,6 +61,10 @@ public class ConfigManager {
                         + "Could not create lang.yml!");
             }
         }
+
+        serverLogging = config.getString("msg.serverLogging");
+        diskLogging = config.getString("msg.diskLogging");
+        notify = config.getString("msg.notify");
     }
 
     private void backupConfig() {
@@ -78,7 +88,7 @@ public class ConfigManager {
         int settings = 0;
         int addedSettings = 0;
 
-        InputStream defConfigStream = Main.getMain().getResource("config.yml");
+        InputStream defConfigStream = Main.getMain().getResource(CONFIG_FILENAME);
 
         backupConfig();
         if (defConfigStream != null) {
@@ -106,7 +116,7 @@ public class ConfigManager {
             config.save(configFile);
         } catch (IOException e) {
             Bukkit.getServer().getLogger().severe(ChatColor.RED
-                    + "Could not save config.yml!");
+                    + "Could not save CONFIG_FILENAME!");
         }
     }
 }

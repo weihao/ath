@@ -1,8 +1,7 @@
 package org.akadia.ath.bungee;
 
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -12,6 +11,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
+import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -23,34 +23,38 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main extends Plugin implements Listener {
-    private static Main main;
-    private Configuration configuration;
-    private int maxCount;
-    private PrintWriter pw;
+    final String CONFIG_FILENAME = "config.yml";
+
+    static Main main;
+    Configuration config;
+    int maxCount;
+    PrintWriter pw;
+
+    String diskLogging;
+    String serverLogging;
+    String notify;
 
     public static Main getMain() {
         return main;
     }
 
-    public int getMaxCount() {
-        return maxCount;
-    }
-
     @Override
     public void onEnable() {
         main = this;
+        new Metrics(this, 9801);
+
         PluginManager pm = getProxy().getPluginManager();
         pm.registerListener(this, this);
         pm.registerCommand(this, new AthCommand());
 
-        createFile("config.yml", true);
+        createFile(CONFIG_FILENAME, true);
 
-        try {
-            configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        maxCount = configuration.getInt("record");
+        config = load(CONFIG_FILENAME);
+
+        maxCount = config.getInt("record");
+        serverLogging = config.getString("msg.serverLogging");
+        diskLogging = config.getString("msg.diskLogging");
+        notify = config.getString("msg.notify");
     }
 
     @EventHandler
@@ -63,29 +67,24 @@ public class Main extends Plugin implements Listener {
 
         maxCount = onlineCount;
 
-        String ath = String.format("(%s) - ATH Concurrent Online Player Record: %s", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()), maxCount);
-        logToFile(ath);
-        getLogger().info(ath);
 
-        configuration.set("record", maxCount);
-        try {
-            ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(getDataFolder(), "config.yml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logToDisk(diskLogging
+                .replaceAll("%player_count%", String.valueOf(maxCount))
+                .replaceAll("%date%", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
 
-        BaseComponent[] pAth = new ComponentBuilder("Server Reached ATH Player Record: ")
-                .color(ChatColor.GOLD)
-                .bold(true)
-                .append(String.valueOf(maxCount))
-                .color(ChatColor.RED)
-                .create();
+        getLogger().info(serverLogging
+                .replaceAll("%player_count%", String.valueOf(maxCount)));
+
+        config.set("record", maxCount);
+        save(config, CONFIG_FILENAME);
+
+        TextComponent pAth = new TextComponent(ChatColor.translateAlternateColorCodes('&', notify.replaceAll("%player_count%", String.valueOf(maxCount))));
         for (ProxiedPlayer player : getProxy().getPlayers()) {
             player.sendMessage(pAth);
         }
     }
 
-    public void logToFile(String message) {
+    public void logToDisk(String message) {
         if (pw == null) {
             try {
                 File saveTo = createFile("log.txt");
@@ -124,5 +123,24 @@ public class Main extends Plugin implements Listener {
             ex.printStackTrace();
         }
         return saveTo;
+    }
+
+    public boolean save(Configuration configuration, String filename) {
+        try {
+            ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(getDataFolder(), filename));
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Configuration load(String filename) {
+        try {
+            return ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

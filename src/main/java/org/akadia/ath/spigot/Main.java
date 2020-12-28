@@ -1,5 +1,6 @@
 package org.akadia.ath.spigot;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,11 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main extends JavaPlugin implements Listener {
-    private static Main main;
-    private ConfigManager configManager;
-    private int maxCount;
-    private PrintWriter pw;
-
+    static Main main;
+    ConfigManager configManager;
+    int maxCount;
+    PrintWriter pw;
 
     public static Main getMain() {
         return main;
@@ -34,11 +34,12 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         main = this;
+        new Metrics(this, 9801);
+
         configManager = new ConfigManager();
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(this, this);
         getCommand("ath").setExecutor(new AthCommand());
-
     }
 
 
@@ -51,15 +52,19 @@ public class Main extends JavaPlugin implements Listener {
         }
 
         maxCount = onlineCount;
-        String ath = String.format("(%s) - ATH Concurrent Online Player Record: %s", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()), maxCount);
-        getLogger().info(ath);
-        logToFile(ath);
+
+        getLogger().info(configManager.serverLogging
+                .replaceAll("%player_count%", String.valueOf(maxCount)));
+
+        logToFile(configManager.diskLogging
+                .replaceAll("%player_count%", String.valueOf(maxCount))
+                .replaceAll("%date%", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
 
         configManager.config.set("record", maxCount);
         configManager.saveConfig();
 
-        String pAth = ChatColor.GOLD + "Server Reached ATH Player Record: "
-                + ChatColor.RED + ChatColor.BOLD + Main.getMain().getMaxCount();
+        String pAth = ChatColor.translateAlternateColorCodes('&', configManager.notify)
+                .replaceAll("%player_count%", String.valueOf(maxCount));
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             onlinePlayer.sendMessage(pAth);
         }
