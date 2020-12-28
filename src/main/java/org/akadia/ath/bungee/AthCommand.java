@@ -16,7 +16,9 @@ public class AthCommand extends Command {
         sender.sendMessage(
                 new TextComponent(
                         ChatColor.translateAlternateColorCodes('&',
-                                Main.getMain().notify).replaceAll("%player_count%", String.valueOf(Main.getMain().maxCount)))
+                                Main.getMain().notify)
+                                .replaceAll("%player_count%", String.valueOf(Main.getMain().maxCount))
+                                .replaceAll("%date%", Main.getMain().achievedDate))
         );
     }
 }

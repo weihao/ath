@@ -6,11 +6,11 @@ version: ${project.version}
 git-version: ${git.commit.id.abbrev}
 load: POSTWORLD
 author: akadia
-authors: [akadia]
+authors: [ akadia ]
 website: https://akadia.org/
 description: ${project.description}
-depend: []
-softdepend: []
+depend: [ ]
+softdepend: [ ]
 
 commands:
   ath:

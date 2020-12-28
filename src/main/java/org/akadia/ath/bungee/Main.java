@@ -23,11 +23,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main extends Plugin implements Listener {
-    final String CONFIG_FILENAME = "config.yml";
-
     static Main main;
+    final String CONFIG_FILENAME = "config.yml";
     Configuration config;
     int maxCount;
+    String achievedDate;
+
     PrintWriter pw;
 
     String diskLogging;
@@ -51,7 +52,9 @@ public class Main extends Plugin implements Listener {
 
         config = load(CONFIG_FILENAME);
 
-        maxCount = config.getInt("record");
+        maxCount = config.getInt("record.count");
+        achievedDate = config.getString("record.date");
+
         serverLogging = config.getString("msg.serverLogging");
         diskLogging = config.getString("msg.diskLogging");
         notify = config.getString("msg.notify");
@@ -66,11 +69,11 @@ public class Main extends Plugin implements Listener {
         }
 
         maxCount = onlineCount;
-
-
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        achievedDate = date;
         logToDisk(diskLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount))
-                .replaceAll("%date%", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
+                .replaceAll("%date%", date));
 
         getLogger().info(serverLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount)));
@@ -78,7 +81,10 @@ public class Main extends Plugin implements Listener {
         config.set("record", maxCount);
         save(config, CONFIG_FILENAME);
 
-        TextComponent pAth = new TextComponent(ChatColor.translateAlternateColorCodes('&', notify.replaceAll("%player_count%", String.valueOf(maxCount))));
+        TextComponent pAth = new TextComponent(
+                ChatColor.translateAlternateColorCodes('&', notify)
+                        .replaceAll("%player_count%", String.valueOf(maxCount))
+                        .replaceAll("%date%", date));
         for (ProxiedPlayer player : getProxy().getPlayers()) {
             player.sendMessage(pAth);
         }

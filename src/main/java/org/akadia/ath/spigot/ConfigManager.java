@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class ConfigManager {
     final String CONFIG_FILENAME = "config.yml";
 
-    
+
     public FileConfiguration config;
     public File configFile;
 

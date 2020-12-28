@@ -21,6 +21,7 @@ public class Main extends JavaPlugin implements Listener {
     static Main main;
     ConfigManager configManager;
     int maxCount;
+    String achievedDate;
     PrintWriter pw;
 
     public static Main getMain() {
@@ -37,6 +38,9 @@ public class Main extends JavaPlugin implements Listener {
         new Metrics(this, 9801);
 
         configManager = new ConfigManager();
+        maxCount = configManager.config.getInt("record.count");
+        achievedDate = configManager.config.getString("record.date");
+
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(this, this);
         getCommand("ath").setExecutor(new AthCommand());
@@ -52,22 +56,27 @@ public class Main extends JavaPlugin implements Listener {
         }
 
         maxCount = onlineCount;
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        achievedDate = date;
 
         getLogger().info(configManager.serverLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount)));
 
         logToFile(configManager.diskLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount))
-                .replaceAll("%date%", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
+                .replaceAll("%date%", date));
 
-        configManager.config.set("record", maxCount);
+        configManager.config.set("record.count", maxCount);
+        configManager.config.set("record.date", achievedDate);
         configManager.saveConfig();
 
         String pAth = ChatColor.translateAlternateColorCodes('&', configManager.notify)
-                .replaceAll("%player_count%", String.valueOf(maxCount));
+                .replaceAll("%player_count%", String.valueOf(maxCount))
+                .replaceAll("%date%", date);
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             onlinePlayer.sendMessage(pAth);
         }
+
     }
 
     public void logToFile(String message) {

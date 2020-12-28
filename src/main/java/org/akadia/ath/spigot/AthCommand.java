@@ -10,7 +10,8 @@ public class AthCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String pAth = ChatColor.translateAlternateColorCodes('&', Main.getMain().configManager.notify)
-                .replaceAll("%player_count%", String.valueOf(Main.getMain().getMaxCount()));
+                .replaceAll("%player_count%", String.valueOf(Main.getMain().getMaxCount()))
+                .replaceAll("%date%", Main.getMain().achievedDate);
 
         sender.sendMessage(pAth);
 
