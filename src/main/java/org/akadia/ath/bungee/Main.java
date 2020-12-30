@@ -78,7 +78,9 @@ public class Main extends Plugin implements Listener {
         getLogger().info(serverLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount)));
 
-        config.set("record", maxCount);
+
+        config.set("record.count", maxCount);
+        config.set("record.date", achievedDate);
         save(config, CONFIG_FILENAME);
 
         TextComponent pAth = new TextComponent(
