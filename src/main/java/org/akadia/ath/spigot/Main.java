@@ -45,7 +45,7 @@ public class Main extends JavaPlugin implements Listener {
         pm.registerEvents(this, this);
         getCommand("ath").setExecutor(new AthCommand());
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Ath")) {
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             new AthPlaceholder().register();
         }
 

@@ -7,7 +7,7 @@
     <groupId>org.akadia</groupId>
     <artifactId>ath</artifactId>
     <name>Ath</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <url>https://akadia.org</url>
 

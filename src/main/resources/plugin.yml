@@ -14,4 +14,4 @@ softdepend: [ PlaceholderAPI ]
 
 commands:
   ath:
-    description: get the ATH record
+    description: ath plugin

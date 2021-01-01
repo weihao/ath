@@ -26,6 +26,8 @@ public class ConfigManager {
     String diskLogging;
     String serverLogging;
     String notify;
+    String reloading;
+    String reloaded;
 
     public ConfigManager() {
         if (!Main.getMain().getDataFolder().exists()) {
@@ -65,6 +67,8 @@ public class ConfigManager {
         serverLogging = config.getString("msg.serverLogging");
         diskLogging = config.getString("msg.diskLogging");
         notify = config.getString("msg.notify");
+        reloading = config.getString("msg.reloading");
+        reloaded = config.getString("msg.reloaded");
     }
 
     private void backupConfig() {

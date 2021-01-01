@@ -34,6 +34,8 @@ public class Main extends Plugin implements Listener {
     String diskLogging;
     String serverLogging;
     String notify;
+    String reloading;
+    String reloaded;
 
     public static Main getMain() {
         return main;
@@ -48,6 +50,10 @@ public class Main extends Plugin implements Listener {
         pm.registerListener(this, this);
         pm.registerCommand(this, new AthCommand());
 
+        initializeConfig();
+    }
+
+    public void initializeConfig() {
         createFile(CONFIG_FILENAME, true);
 
         config = load(CONFIG_FILENAME);
@@ -58,6 +64,8 @@ public class Main extends Plugin implements Listener {
         serverLogging = config.getString("msg.serverLogging");
         diskLogging = config.getString("msg.diskLogging");
         notify = config.getString("msg.notify");
+        reloading = config.getString("msg.reloading");
+        reloaded = config.getString("msg.reloaded");
     }
 
     @EventHandler

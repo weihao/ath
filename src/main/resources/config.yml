@@ -7,3 +7,5 @@ msg:
   notify: "&6Server Reached New Online Players Record &c&l%player_count%&6 at %date%"
   serverLogging: "Concurrent Online Player Record: %player_count%"
   diskLogging: "(%date%) - ATH Concurrent Online Player Record: %player_count%"
+  reloading: "Reloading plugin..."
+  reloaded: "Plugin has reloaded!"
