@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ConfigManager {
     final String CONFIG_FILENAME = "config.yml";
-
+    final String TAG = ChatColor.translateAlternateColorCodes('&', "&f[&6Ath&f]");
 
     public FileConfiguration config;
     public File configFile;
@@ -28,6 +28,7 @@ public class ConfigManager {
     String notify;
     String reloading;
     String reloaded;
+    String noPerm;
 
     public ConfigManager() {
         if (!Main.getMain().getDataFolder().exists()) {
@@ -64,11 +65,28 @@ public class ConfigManager {
             }
         }
 
-        serverLogging = config.getString("msg.serverLogging");
-        diskLogging = config.getString("msg.diskLogging");
-        notify = config.getString("msg.notify");
-        reloading = config.getString("msg.reloading");
-        reloaded = config.getString("msg.reloaded");
+        serverLogging = getMsg("logs.console", false);
+        diskLogging = getMsg("logs.disk", false);
+        notify = getMsg("msg.notify");
+        reloading = getMsg("msg.reloading");
+        reloaded = getMsg("msg.reloaded");
+        noPerm = getMsg("msg.noPerm");
+    }
+
+    public String getMsg(String path, boolean isColor) {
+        String str = config.getString(path);
+        if (str == null) {
+            return "";
+        }
+        if (isColor) {
+            return ChatColor.translateAlternateColorCodes('&', str);
+        } else {
+            return str;
+        }
+    }
+
+    public String getMsg(String path) {
+        return getMsg(path, true);
     }
 
     private void backupConfig() {

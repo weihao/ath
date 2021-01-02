@@ -2,7 +2,7 @@ package org.akadia.ath.spigot;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -75,13 +75,12 @@ public class Main extends JavaPlugin implements Listener {
         configManager.config.set("record.date", achievedDate);
         configManager.saveConfig();
 
-        String pAth = ChatColor.translateAlternateColorCodes('&', configManager.notify)
+        String pAth = configManager.notify
                 .replaceAll("%player_count%", String.valueOf(maxCount))
                 .replaceAll("%date%", date);
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            onlinePlayer.sendMessage(pAth);
+            sendMsg(onlinePlayer, pAth);
         }
-
     }
 
     public void logToFile(String message) {
@@ -95,5 +94,9 @@ public class Main extends JavaPlugin implements Listener {
         }
         pw.println(message);
         pw.flush();
+    }
+
+    public void sendMsg(CommandSender sender, String msg) {
+        sender.sendMessage(configManager.TAG + " " + msg);
     }
 }

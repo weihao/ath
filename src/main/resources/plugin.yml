@@ -15,3 +15,13 @@ softdepend: [ PlaceholderAPI ]
 commands:
   ath:
     description: ath plugin
+
+permissions:
+  ath.*:
+    description: Gives access to all ath permissions and command.
+  ath.check:
+    description: Use /ath to check ath record.
+    default: true
+  ath.reload:
+    description: Allows you to reload the plugin.
+    default: op

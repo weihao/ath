@@ -25,6 +25,7 @@ import java.util.Date;
 public class Main extends Plugin implements Listener {
     static Main main;
     final String CONFIG_FILENAME = "config.yml";
+    final String TAG = ChatColor.translateAlternateColorCodes('&', "&f[&6Ath&f]");
     Configuration config;
     int maxCount;
     String achievedDate;
@@ -59,13 +60,17 @@ public class Main extends Plugin implements Listener {
         config = load(CONFIG_FILENAME);
 
         maxCount = config.getInt("record.count");
-        achievedDate = config.getString("record.date");
+        achievedDate = getMsg("record.date");
 
-        serverLogging = config.getString("msg.serverLogging");
-        diskLogging = config.getString("msg.diskLogging");
-        notify = config.getString("msg.notify");
-        reloading = config.getString("msg.reloading");
-        reloaded = config.getString("msg.reloaded");
+        serverLogging = getMsg("logs.console");
+        diskLogging = getMsg("logs.disk");
+        notify = getMsg("msg.notify");
+        reloading = getMsg("msg.reloading");
+        reloaded = getMsg("msg.reloaded");
+    }
+
+    public String getMsg(String context) {
+        return ChatColor.translateAlternateColorCodes('&', config.getString(context));
     }
 
     @EventHandler
@@ -91,10 +96,9 @@ public class Main extends Plugin implements Listener {
         config.set("record.date", achievedDate);
         save(config, CONFIG_FILENAME);
 
-        TextComponent pAth = new TextComponent(
-                ChatColor.translateAlternateColorCodes('&', notify)
-                        .replaceAll("%player_count%", String.valueOf(maxCount))
-                        .replaceAll("%date%", date));
+        TextComponent pAth = new TextComponent(Main.getMain().TAG + " " + notify
+                .replaceAll("%player_count%", String.valueOf(maxCount))
+                .replaceAll("%date%", date));
         for (ProxiedPlayer player : getProxy().getPlayers()) {
             player.sendMessage(pAth);
         }
