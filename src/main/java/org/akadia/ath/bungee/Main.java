@@ -37,6 +37,7 @@ public class Main extends Plugin implements Listener {
     String notify;
     String reloading;
     String reloaded;
+    String unknownCommand;
 
     public static Main getMain() {
         return main;
@@ -67,6 +68,7 @@ public class Main extends Plugin implements Listener {
         notify = getMsg("msg.notify");
         reloading = getMsg("msg.reloading");
         reloaded = getMsg("msg.reloaded");
+        unknownCommand = getMsg("msg.unknownCommand");
     }
 
     public String getMsg(String context) {

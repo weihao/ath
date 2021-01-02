@@ -29,6 +29,7 @@ public class ConfigManager {
     String reloading;
     String reloaded;
     String noPerm;
+    String unknownCommand;
 
     public ConfigManager() {
         if (!Main.getMain().getDataFolder().exists()) {
@@ -71,6 +72,7 @@ public class ConfigManager {
         reloading = getMsg("msg.reloading");
         reloaded = getMsg("msg.reloaded");
         noPerm = getMsg("msg.noPerm");
+        unknownCommand = getMsg("msg.unknownCommand");
     }
 
     public String getMsg(String path, boolean isColor) {

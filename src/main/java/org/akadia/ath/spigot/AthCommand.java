@@ -27,6 +27,8 @@ public class AthCommand implements CommandExecutor {
             } else {
                 Main.getMain().sendMsg(sender, Main.getMain().configManager.noPerm);
             }
+        } else {
+            Main.getMain().sendMsg(sender, Main.getMain().configManager.unknownCommand);
         }
         return true;
     }

@@ -8,6 +8,7 @@ msg:
   reloading: "&7Reloading plugin..."
   reloaded: "&7Plugin has reloaded!"
   noPerm: "&cYou do not have permission!"
+  unknownCommand: "&cUnknown Command."
 
 logs:
   console: "Concurrent Online Player Record: %player_count%"

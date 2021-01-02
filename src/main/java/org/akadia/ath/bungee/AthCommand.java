@@ -24,6 +24,8 @@ public class AthCommand extends Command {
             sender.sendMessage(new ComponentBuilder((Main.getMain().TAG + " " + Main.getMain().reloading)).create());
             Main.getMain().initializeConfig();
             sender.sendMessage(new ComponentBuilder((Main.getMain().TAG + " " + Main.getMain().reloaded)).create());
+        } else {
+            sender.sendMessage(new ComponentBuilder((Main.getMain().TAG + " " + Main.getMain().unknownCommand)).create());
         }
 
     }
