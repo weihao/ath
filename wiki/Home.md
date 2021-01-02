@@ -1,3 +1,12 @@
+## Server Compatibility
+- BungeeCord
+- Spigot
+- Bukkit
+- Paper
+
+## Version Compatibility
+- `1.6` - `1.16.x`
+
 ## Commands and Permissions
 
 | Command| Permission|
