@@ -104,6 +104,8 @@ public class Main extends Plugin implements Listener {
         for (ProxiedPlayer player : getProxy().getPlayers()) {
             player.sendMessage(pAth);
         }
+
+        getProxy().getPluginManager().callEvent(new AthRecordEvent(maxCount, achievedDate));
     }
 
     public void logToDisk(String message) {

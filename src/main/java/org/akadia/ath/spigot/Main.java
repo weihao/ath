@@ -81,6 +81,9 @@ public class Main extends JavaPlugin implements Listener {
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             sendMsg(onlinePlayer, pAth);
         }
+
+        AthRecordEvent event = new AthRecordEvent(maxCount, achievedDate);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     public void logToFile(String message) {

@@ -7,7 +7,7 @@
     <groupId>org.akadia</groupId>
     <artifactId>ath</artifactId>
     <name>Ath</name>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
     <url>https://akadia.org</url>
 
@@ -38,6 +38,11 @@
         <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>sponge-repo</id>
+            <name>Sponge Maven Repository</name>
+            <url>https://repo.spongepowered.org/maven</url>
         </repository>
     </repositories>
 
@@ -84,6 +89,13 @@
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.10.9</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spongepowered</groupId>
+            <artifactId>spongeapi</artifactId>
+            <version>7.2.0</version>
+            <type>jar</type>
             <scope>provided</scope>
         </dependency>
     </dependencies>
