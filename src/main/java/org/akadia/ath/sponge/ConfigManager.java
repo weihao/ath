@@ -6,18 +6,16 @@ import org.spongepowered.api.Sponge;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 
 public class ConfigManager {
 
     private static final ConfigManager instance = new ConfigManager();
+    private ConfigurationLoader<CommentedConfigurationNode> configLoader;
+    private CommentedConfigurationNode config;
 
     public static ConfigManager getInstance() {
         return instance;
     }
-
-    private ConfigurationLoader<CommentedConfigurationNode> configLoader;
-    private CommentedConfigurationNode config;
 
     public void setup(Main plugin, File configFile, ConfigurationLoader<CommentedConfigurationNode> configLoader) {
         this.configLoader = configLoader;
