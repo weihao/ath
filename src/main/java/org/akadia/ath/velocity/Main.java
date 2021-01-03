@@ -83,6 +83,8 @@ public class Main {
                             .replaceAll("%player_count%", String.valueOf(maxCount))
                             .replaceAll("%date%", date)));
         }
+
+        server.getEventManager().fire(new AthRecordEvent(maxCount, achievedDate));
     }
 
 }
