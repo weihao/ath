@@ -5,7 +5,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import org.slf4j.Logger;
 
-@Plugin(id = "ath", version = "1.0.0")
+@Plugin(id = "ath", name = "Ath", version = "1.0.0")
 public class Main {
 
     private final ProxyServer server;

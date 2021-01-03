@@ -167,20 +167,14 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <!-- Replace this with your package! -->
+                                    <shadedPattern>org.akadia.ath</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
