@@ -1,5 +1,6 @@
-package org.akadia.ath.spigot;
+package org.akadia.ath.bukkit;
 
+import org.akadia.ath.util.Util;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -48,7 +49,13 @@ public class Main extends JavaPlugin implements Listener {
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             new AthPlaceholder().register();
         }
-
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            if (Util.isUpdateToDate()) {
+                getLogger().info(configManager.upToDate);
+            } else {
+                getLogger().info(configManager.outdated);
+            }
+        });
     }
 
 
@@ -64,7 +71,7 @@ public class Main extends JavaPlugin implements Listener {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         achievedDate = date;
 
-        getLogger().info(configManager.serverLogging
+        getLogger().info(configManager.consoleLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount)));
 
         logToFile(configManager.diskLogging

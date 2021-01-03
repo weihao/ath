@@ -13,3 +13,5 @@ msg:
 logs:
   console: "Concurrent Online Player Record: %player_count%"
   disk: "(%date%) - ATH Concurrent Online Player Record: %player_count%"
+  outdated: "Plugin is outdated!"
+  upToDate: "Plugin is up to date."

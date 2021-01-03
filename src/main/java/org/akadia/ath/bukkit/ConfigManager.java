@@ -1,4 +1,4 @@
-package org.akadia.ath.spigot;
+package org.akadia.ath.bukkit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,12 +24,14 @@ public class ConfigManager {
     public File logFile;
 
     String diskLogging;
-    String serverLogging;
+    String consoleLogging;
     String notify;
     String reloading;
     String reloaded;
     String noPerm;
     String unknownCommand;
+    String outdated;
+    String upToDate;
 
     public ConfigManager() {
         if (!Main.getMain().getDataFolder().exists()) {
@@ -66,13 +68,15 @@ public class ConfigManager {
             }
         }
 
-        serverLogging = getMsg("logs.console", false);
+        consoleLogging = getMsg("logs.console", false);
         diskLogging = getMsg("logs.disk", false);
         notify = getMsg("msg.notify");
         reloading = getMsg("msg.reloading");
         reloaded = getMsg("msg.reloaded");
         noPerm = getMsg("msg.noPerm");
         unknownCommand = getMsg("msg.unknownCommand");
+        outdated = getMsg("logs.outdated");
+        upToDate = getMsg("logs.upToDate");
     }
 
     public String getMsg(String path, boolean isColor) {

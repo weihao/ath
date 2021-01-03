@@ -1,4 +1,4 @@
-package org.akadia.ath.spigot;
+package org.akadia.ath.bukkit;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

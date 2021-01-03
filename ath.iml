@@ -33,6 +33,7 @@
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:16.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.bstats:bstats-bukkit:1.8" level="project" />
     <orderEntry type="library" name="Maven: org.bstats:bstats-bungeecord:1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.bstats:bstats-sponge:1.8" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: me.clip:placeholderapi:2.10.9" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spongepowered:spongeapi:7.2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />

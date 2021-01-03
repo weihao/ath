@@ -11,6 +11,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
+import org.akadia.ath.util.Util;
 import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
@@ -33,11 +34,13 @@ public class Main extends Plugin implements Listener {
     PrintWriter pw;
 
     String diskLogging;
-    String serverLogging;
+    String consoleLogging;
     String notify;
     String reloading;
     String reloaded;
     String unknownCommand;
+    String outdated;
+    String upToDate;
 
     public static Main getMain() {
         return main;
@@ -53,6 +56,14 @@ public class Main extends Plugin implements Listener {
         pm.registerCommand(this, new AthCommand());
 
         initializeConfig();
+
+        getProxy().getScheduler().runAsync(this, () -> {
+            if (Util.isUpdateToDate()) {
+                getLogger().info(upToDate);
+            } else {
+                getLogger().info(outdated);
+            }
+        });
     }
 
     public void initializeConfig() {
@@ -63,12 +74,14 @@ public class Main extends Plugin implements Listener {
         maxCount = config.getInt("record.count");
         achievedDate = getMsg("record.date");
 
-        serverLogging = getMsg("logs.console");
+        consoleLogging = getMsg("logs.console");
         diskLogging = getMsg("logs.disk");
         notify = getMsg("msg.notify");
         reloading = getMsg("msg.reloading");
         reloaded = getMsg("msg.reloaded");
         unknownCommand = getMsg("msg.unknownCommand");
+        outdated = getMsg("logs.outdated");
+        upToDate = getMsg("logs.upToDate");
     }
 
     public String getMsg(String context) {
@@ -90,7 +103,7 @@ public class Main extends Plugin implements Listener {
                 .replaceAll("%player_count%", String.valueOf(maxCount))
                 .replaceAll("%date%", date));
 
-        getLogger().info(serverLogging
+        getLogger().info(consoleLogging
                 .replaceAll("%player_count%", String.valueOf(maxCount)));
 
 

@@ -1,7 +1,7 @@
 name: ${project.name}
 prefix: ${project.name}
 api-version: 1.13
-main: org.akadia.ath.spigot.Main
+main: org.akadia.ath.bukkit.Main
 version: ${project.version}
 git-version: ${git.commit.id.abbrev}
 load: POSTWORLD

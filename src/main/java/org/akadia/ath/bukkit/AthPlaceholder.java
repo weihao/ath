@@ -1,4 +1,4 @@
-package org.akadia.ath.spigot;
+package org.akadia.ath.bukkit;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
