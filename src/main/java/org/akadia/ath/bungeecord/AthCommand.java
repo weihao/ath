@@ -1,4 +1,4 @@
-package org.akadia.ath.bungee;
+package org.akadia.ath.bungeecord;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ComponentBuilder;

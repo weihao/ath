@@ -1,5 +1,5 @@
 name: ${project.name}
-main: org.akadia.ath.bungee.Main
+main: org.akadia.ath.bungeecord.Main
 version: ${project.version}
 author: akadia
 description: ${project.description}

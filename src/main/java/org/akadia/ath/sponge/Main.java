@@ -3,6 +3,7 @@ package org.akadia.ath.sponge;
 import com.google.inject.Inject;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.bstats.sponge.Metrics2;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandResult;
@@ -51,10 +52,10 @@ public class Main {
     @DefaultConfig(sharedRoot = true)
     private File configFile;
 
-//    @Inject
-//    public Main(Metrics2.Factory metricsFactory) {
-//        metricsFactory.make(9801);
-//    }
+    @Inject
+    public Main(Metrics2.Factory metricsFactory) {
+        metricsFactory.make(9801);
+    }
 
     @Listener
     public void onInitialization(GamePreInitializationEvent event) {

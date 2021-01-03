@@ -169,9 +169,14 @@
                             </transformers>
                             <relocations>
                                 <relocation>
-                                    <pattern>org.bstats</pattern>
+                                    <pattern>org.bstats.bukkit</pattern>
                                     <!-- Replace this with your package! -->
-                                    <shadedPattern>org.akadia.ath</shadedPattern>
+                                    <shadedPattern>org.akadia.ath.bukkit</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.bstats.bungeecord</pattern>
+                                    <!-- Replace this with your package! -->
+                                    <shadedPattern>org.akadia.ath.bungeecord</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
