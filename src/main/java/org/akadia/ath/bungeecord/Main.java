@@ -11,7 +11,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
-import org.akadia.ath.util.Util;
+import org.akadia.ath.util.Version;
 import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
@@ -58,7 +58,7 @@ public class Main extends Plugin implements Listener {
         initializeConfig();
 
         getProxy().getScheduler().runAsync(this, () -> {
-            if (Util.isUpdateToDate()) {
+            if (Version.isUpdateToDate()) {
                 getLogger().info(upToDate);
             } else {
                 getLogger().info(outdated);

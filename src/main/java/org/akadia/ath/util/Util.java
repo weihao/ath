@@ -1,33 +1,17 @@
 package org.akadia.ath.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 public class Util {
-    public static String getLatestVersion() {
-        try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(
-                    "https://api.spigotmc.org/legacy/update.php?resource=87124"
-            ).openConnection();
-            connection.setDoInput(true);
-            connection.setRequestMethod("GET");
-            return new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static final String ALL_CODES = "0123456789AaBbCcDdEeFfKkLlMmNnOoRrXx";
+    public static final char COLOR_CHAR = '\u00A7';
+
+    public static String toColor(String textToTranslate) {
+        char[] b = textToTranslate.toCharArray();
+        for (int i = 0; i < b.length - 1; i++) {
+            if (b[i] == '&' && ALL_CODES.indexOf(b[i + 1]) > -1) {
+                b[i] = COLOR_CHAR;
+                b[i + 1] = Character.toLowerCase(b[i + 1]);
+            }
         }
-        return null;
-    }
-
-    public static String getCurrentVersion() {
-        return Util.class.getPackage().getImplementationVersion();
-    }
-
-    public static boolean isUpdateToDate() {
-        Version spigot = new Version(getLatestVersion());
-        Version current = new Version(getCurrentVersion());
-        return current.compareTo(spigot) >= 0;
+        return new String(b);
     }
 }

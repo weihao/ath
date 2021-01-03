@@ -3,6 +3,7 @@ package org.akadia.ath.sponge;
 import com.google.inject.Inject;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.akadia.ath.util.Util;
 import org.bstats.sponge.Metrics2;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
@@ -29,8 +30,7 @@ import java.util.Date;
 
 @Plugin(id = "ath", name = "Ath", version = "1.0")
 public class Main {
-    public final String ALL_CODES = "0123456789AaBbCcDdEeFfKkLlMmNnOoRrXx";
-    public final char COLOR_CHAR = '\u00A7';
+
     int maxCount;
     String achievedDate;
     String diskLogging;
@@ -98,19 +98,9 @@ public class Main {
         if (str == null) {
             return "";
         }
-        return translateAlternateColorCodes('&', str);
+        return Util.toColor(str);
     }
 
-    public String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
-        char[] b = textToTranslate.toCharArray();
-        for (int i = 0; i < b.length - 1; i++) {
-            if (b[i] == altColorChar && ALL_CODES.indexOf(b[i + 1]) > -1) {
-                b[i] = COLOR_CHAR;
-                b[i + 1] = Character.toLowerCase(b[i + 1]);
-            }
-        }
-        return new String(b);
-    }
 
     @Listener(order = Order.FIRST)
     public void onPlayerJoin(ClientConnectionEvent.Join evt) {

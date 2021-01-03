@@ -1,8 +1,17 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
-## [1.0.5] - 2021-01-03
+## [1.0.6] - 2021-01-04
+
 ### Added
+
+- Added Velocity support
+
+## [1.0.5] - 2021-01-03
+
+### Added
+
 - Added PAPI placeholders
 - Added bStats metrics
 - Added custom events

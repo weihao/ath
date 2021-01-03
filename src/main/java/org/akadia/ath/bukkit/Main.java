@@ -1,6 +1,6 @@
 package org.akadia.ath.bukkit;
 
-import org.akadia.ath.util.Util;
+import org.akadia.ath.util.Version;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -50,7 +50,7 @@ public class Main extends JavaPlugin implements Listener {
             new AthPlaceholder().register();
         }
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
-            if (Util.isUpdateToDate()) {
+            if (Version.isUpdateToDate()) {
                 getLogger().info(configManager.upToDate);
             } else {
                 getLogger().info(configManager.outdated);

@@ -1,5 +1,3 @@
-
-
 ## Server Compatibility
 
 - [x] [Spigot](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse)
@@ -11,7 +9,7 @@
 - [x] [BungeeCord](https://github.com/SpigotMC/BungeeCord)
 - [x] [Waterfall](https://github.com/PaperMC/Waterfall)
 - [x] [Travertine](https://github.com/PaperMC/Travertine)
-- [ ] [Velocity](https://github.com/VelocityPowered/Velocity)
+- [x] [Velocity](https://github.com/VelocityPowered/Velocity)
 
 ## Version Compatibility
 
@@ -32,7 +30,9 @@
 ```
 
 ## Event
+
 `AthRecordEvent`
+
 ```
 maxCount : Integer
 achievedDate  : String
