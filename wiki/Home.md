@@ -1,4 +1,5 @@
 ## Links
+- [Changelog](https://github.com/weihao/ath/blob/main/CHANGELOG.md)
 - [Config](https://github.com/weihao/ath/blob/main/src/main/resources/config.yml) 
 - [Wiki](https://github.com/weihao/ath/wiki)
 - [bStats](https://bstats.org/plugin/bukkit/Ath/9801)
