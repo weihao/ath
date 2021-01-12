@@ -1,3 +1,5 @@
+# The Complete Guide to Ath
+
 ## Server Compatibility
 
 - [x] [Spigot](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse)
