@@ -16,10 +16,10 @@ A universal plugin that tracks All-Time-High online player record for your netwo
 
 ## Links
 
-- [Changelog](https://github.com/weihao/ath/blob/main/CHANGELOG.md)
-- [Config](https://github.com/weihao/ath/blob/main/src/main/resources/config.yml)
-- [Wiki](https://github.com/weihao/ath/wiki)
-- [bStats](https://bstats.org/plugin/bukkit/Ath/9801)
+- [wiki](https://github.com/weihao/ath/wiki)
+- [changelog](https://github.com/weihao/ath/blob/main/CHANGELOG.md)
+- [config.yml](https://github.com/weihao/ath/blob/main/src/main/resources/config.yml)
+- [plugin.yml](https://github.com/weihao/ath/blob/main/src/main/resources/plugin.yml)
 
 ## Installation
 
