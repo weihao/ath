@@ -1,5 +1,12 @@
 # Ath
 
+![build](https://github.com/weihao/ath/workflows/build/badge.svg)
+![wiki](https://github.com/weihao/ath/workflows/wiki/badge.svg)
+![Spiget Stars](https://img.shields.io/spiget/stars/87124)
+![Spiget Downloads](https://img.shields.io/spiget/downloads/87124)
+
+---
+
 A universal plugin that tracks All-Time-High online player record for your network.
 
 ## Why Ath?
