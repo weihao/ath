@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2021-12-11
+
+### Added
+
+- Add 1.18 support
+
 ## [1.0.6] - 2021-01-04
 
 ### Added
