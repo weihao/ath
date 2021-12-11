@@ -8,7 +8,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.kyori.text.TextComponent;
+import net.kyori.adventure.text.Component;
 import org.akadia.ath.util.Util;
 import org.slf4j.Logger;
 
@@ -79,7 +79,7 @@ public class Main {
 
         for (Player player : server.getAllPlayers()) {
             player.sendMessage(
-                    TextComponent.of(Util.toColor("&6✿ &7Server Reached New Online Players Record &b%player_count%&7 at &b%date% &6✿&7")
+                    Component.text(Util.toColor("&6✿ &7Server Reached New Online Players Record &b%player_count%&7 at &b%date% &6✿&7")
                             .replaceAll("%player_count%", String.valueOf(maxCount))
                             .replaceAll("%date%", date)));
         }
